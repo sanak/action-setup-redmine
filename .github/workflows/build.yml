@@ -22,11 +22,11 @@ jobs:
       matrix:
         include:
           - redmine-repository: 'redmine/redmine'
-            redmine-version: '5.1-stable'
+            redmine-version: '4.2-stable'
             redmine-database: 'sqlite3'
-            ruby-version: '3.2'
+            ruby-version: '2.7'
             expected-about-db-adapter: 'SQLite'
-            expected-about-redmine-version: '5\.1\.[0-9]\.stable'
+            expected-about-redmine-version: '4\.2\.[0-9]\.stable'
 
           - redmine-repository: 'redmine/redmine'
             redmine-version: '5.1-stable'
