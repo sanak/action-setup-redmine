@@ -143,6 +143,16 @@ runs:
         bundler-cache: true
         working-directory: ${{ inputs.path }}
 
+    - name: Adjust gems
+      working-directory: redmine
+      run: |
+        touch Gemfile.local
+        # https://www.redmine.org/issues/40802
+        if grep -q "require 'blankslate'" lib/redmine/views/builders/structure.rb
+        then
+          echo 'gem "blankslate"' >> Gemfile.local
+        fi
+
     - name: Set up database
       run: |
         bin/rails db:create db:migrate
