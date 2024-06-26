@@ -144,7 +144,6 @@ runs:
         working-directory: ${{ inputs.path }}
 
     - name: Adjust gems
-      working-directory: redmine
       run: |
         touch Gemfile.local
         # https://www.redmine.org/issues/40802
@@ -152,6 +151,8 @@ runs:
         then
           echo 'gem "blankslate"' >> Gemfile.local
         fi
+      shell: bash
+      working-directory: ${{ inputs.path }}
 
     - name: Set up database
       run: |
