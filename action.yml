@@ -139,22 +139,6 @@ runs:
     - name: Adjust Gemfile from agileware-jp/redmine-plugin-orb
       run: |
         # Reference: https://github.com/agileware-jp/redmine-plugin-orb/pull/70/files
-        # NOTE: For Redmine v4.2, it is necessary to upgrade the version of selenium-webdriver to avoid the error:
-        #       "NameError: uninitialized constant Selenium::WebDriver::Chrome::Options".
-        #       This command updates the version of selenium-webdriver in the Gemfile to 3.4.0 or later.
-        VERSION=$(grep "selenium-webdriver" Gemfile | grep -o '[0-9]*\.[0-9]*\.[0-9]*' | head -n 1 || true)
-        if [ -z "${VERSION}" ]; then
-          echo "selenium-webdriver version not found in Gemfile. updated to >= 3.4.0."
-          sed -i 's/gem "selenium-webdriver".*/gem "selenium-webdriver", ">= 3.4.0"/' Gemfile
-        else
-          if [ "${VERSION:0:1}" = "3" ] && [ "${VERSION:2:1}" -le 4 ]; then
-            echo "selenium-webdriver version updated to >= 3.4.0 in Gemfile."
-            sed -i 's/gem "selenium-webdriver".*/gem "selenium-webdriver", ">= 3.4.0"/' Gemfile
-          else
-            echo "No update needed for selenium-webdriver version in Gemfile."
-          fi
-        fi
-
         # https://www.redmine.org/issues/40802
         if grep -q "require 'blankslate'" lib/redmine/views/builders/structure.rb
         then
