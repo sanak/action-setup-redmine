@@ -150,6 +150,7 @@ runs:
         if grep -q "require 'blankslate'" lib/redmine/views/builders/structure.rb
         then
           echo 'gem "blankslate"' >> Gemfile.local
+          cat Gemfile.local
         fi
       shell: bash
       working-directory: ${{ inputs.path }}
