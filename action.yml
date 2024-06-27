@@ -136,9 +136,9 @@ runs:
       shell: bash
       working-directory: ${{ inputs.path }}
 
-    - name: Adjust Gemfile from agileware-jp/redmine-plugin-orb
+    - name: Adjust Gemfile
       run: |
-        # Reference: https://github.com/agileware-jp/redmine-plugin-orb/pull/70/files
+        # Ref: https://github.com/agileware-jp/redmine-plugin-orb/pull/70
         # https://www.redmine.org/issues/40802
         if grep -q "require 'blankslate'" lib/redmine/views/builders/structure.rb
         then
